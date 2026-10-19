@@ -23,16 +23,22 @@ public class AB_Idle : StateMachineBehaviour
         timer -= Time.deltaTime;
         if(timer <= 0)
         {
-            //cambiar a ot
+            //cambiar al estado PATROl usando la propia transición del Animators
             animator.SetBool("isPatrolling", true);
+        }
+
+        //Si detecta un objeto pegriloso en algún momento, pasa al estado de RUN AWAY
+        if(npc.DetectDanger() != null)
+        {
+            animator.SetBool("isRunningAway", true);
         }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        animator.SetBool("isIdle", false);
+    }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

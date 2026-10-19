@@ -7,8 +7,18 @@ public class AnimalNPC : MonoBehaviour
     public Vector2 idleTimeRange = new Vector2(2, 5);
 
     public NavMeshAgent agent;
+
     //Cómo de lejos puede moverse
     public float moveDistance = 6;
+
+    //Cuánto tiempo se queda cagando
+    public Vector2 poopTimeRange = new Vector2(6, 8);
+
+    //Rango para detectar cosas peligrosas
+    public float detectionRange = 4;
+
+    //Capas que considera como objetos peligrosos
+    public LayerMask dangerLayers;
 
     void Start()
     {
@@ -40,10 +50,31 @@ public class AnimalNPC : MonoBehaviour
 
         return Vector3.zero;
     }
+
+    //Función para detectar objetos peligrosos a su alrededor
+    public Transform DetectDanger()
+    {
+        //Guardar todos los colliders detectados por el Overlap
+        Collider[] detectedObjects = Physics.OverlapSphere(transform.position, detectionRange, dangerLayers);
+
+        if(detectedObjects.Length > 0)
+        {
+            //Devuelve el primer objeto que haya detectado, sea el que sea
+            return detectedObjects[0].transform;
+        }
+
+        //Si no detecta nada, devuelde NULL
+        return null;
+    }
+
     private void OnDrawGizmos()
     {
-        //azulico
+        //Rango de movimiento
         Gizmos.color = Color.cornflowerBlue;
         Gizmos.DrawWireSphere(transform.position, moveDistance);
+
+        //Rango de detección de objetos peligrosos
+        Gizmos.color = Color.yellowNice;
+        Gizmos.DrawWireSphere(transform.position, detectionRange);
     }
 }

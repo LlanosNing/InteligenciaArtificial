@@ -1429,6 +1429,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6244c4e2a70aefb48a3b36e87361f903, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1712,6 +1716,8 @@ MonoBehaviour:
   dangerLayers:
     serializedVersion: 2
     m_Bits: 8
+  runAwayDistance: 6
+  runAwayAngle: 45
 --- !u!195 &2059904680
 NavMeshAgent:
   m_ObjectHideFlags: 0

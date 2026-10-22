@@ -20,6 +20,13 @@ public class AnimalNPC : MonoBehaviour
     //Capas que considera como objetos peligrosos
     public LayerMask dangerLayers;
 
+    //Distancia a la que huye cuando escapa de un peligro
+    public float runAwayDistance = 6;
+
+    //Ángulo con el que modificará la dirección de huida (aleatoriamente)
+    [Range(0, 110)] //Esto sirve para que en el editor se vea como un slider
+    public float runAwayAngle = 45;
+
     void Start()
     {
         

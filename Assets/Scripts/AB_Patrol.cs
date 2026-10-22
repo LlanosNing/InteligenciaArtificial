@@ -28,6 +28,12 @@ public class AB_Patrol : StateMachineBehaviour
         {
             ChooseAction(animator); //Le pasamos el animator pa que funsione
         }
+
+        //Si detecta un objeto pegriloso en algún momento, pasa al estado de RUN AWAY
+        if (npc.DetectDanger() != null)
+        {
+            animator.SetBool("isRunningAway", true);
+        }
     }
 
     void ChooseAction(Animator animator) //Le pasamos el animator pa que funsione

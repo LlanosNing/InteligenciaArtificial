@@ -65,13 +65,22 @@ public class AB_RunAway : StateMachineBehaviour
 
     private Vector3 GetRunawayPosition(Animator anim)
     {
+        //Si el objeto peligroso es NULL, huye en una dirección aleatorias
+        if(npc.DetectDanger() == null)
+        {
+            return npc.GetRandomPosition();
+        }
+
         //Calcular la dirección contraria a la que se encuentra el objeto peligroso
         Vector3 direction = anim.transform.position - npc.DetectDanger().position;
+
         //Calcular rotación aleatoria //RoundToInt es para redondear ángulos
         int randomRotation = Random.Range(0, Mathf.RoundToInt(npc.runAwayAngle * .5f));
+
         //Aplicar una rotación a la dirección de huida. IMPORTANTE: Mantener este orden de los elementos
         //porque me paso las matemáticas por el culo y aquí el orden de los factores SÍ altera el productos
         direction = Quaternion.Euler(0, randomRotation, 0) * direction.normalized;
+
         //Calcular y devolver la posición sumando la nueva dirección a la posición actual
         return anim.transform.position + direction.normalized * npc.runAwayDistance;
 

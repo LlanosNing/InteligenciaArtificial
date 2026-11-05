@@ -22,6 +22,7 @@ public class StateMachine
     
     public void Update()
     {
+        Debug.Log($"Current state: {currentState.name}");
         currentState.OnUpdate();
     }
 }

@@ -4,7 +4,19 @@ using UnityEngine;
 [System.Serializable]
 public abstract class State 
 {
-    public string name = "State";
+    public string name = "Default state";
+
+    //El estado al que debe cambiar cuando se cumpla la condición
+    public State stateToChange;
+
+    //La máquina de estados con la que debe cambiar de uno a otro
+    protected StateMachine sm;
+
+    public void Setup(StateMachine stateMachine, State state)
+    {
+        sm = stateMachine;  
+        stateToChange = state;
+    }
 
    public virtual void OnEnter()
     {

@@ -10,7 +10,6 @@ public class StateMachine
         {
             //Salir del estado en el que se encuentre
             currentState.OnExit();
-            return;
         }
 
         //Asignar el nuevo estado

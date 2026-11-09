@@ -17,11 +17,21 @@ public class EnemyShoot : MonoBehaviour
         stateMachine = new StateMachine();
         //Empezar en un estado
         stateMachine.ChangeState(patrol);
+        //Asignar los estados a cambiar cuando se cumplan condiciones
+        patrol.Setup(stateMachine, combat);
     }
 
     private void Update()
     {
         //Se llama a la función Update de la máquina de estados
         stateMachine.Update();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, combat.attackRange);
+        Gizmos.color = Color.navajoWhite;
+        Gizmos.DrawWireSphere(transform.position, patrol.detectionRange);
     }
 }

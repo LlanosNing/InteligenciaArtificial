@@ -8,4 +8,9 @@ public class FindCoverState : State
     public LayerMask coverLayers;
     public float speedModifier = 3;
     public NavMeshAgent agent;
+
+    public override void OnEnter()
+    {
+        
+    }
 }

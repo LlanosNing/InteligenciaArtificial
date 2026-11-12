@@ -894,6 +894,14 @@ MonoBehaviour:
     attackRange: 6
     timeToAttack: 0.5
     rotationSpeed: 5
+  alert:
+    name: Alert
+    hearingRange: 6
+    visionAngle: 90
+    detectionLayers:
+      serializedVersion: 2
+      m_Bits: 8
+    agent: {fileID: 828653773}
 --- !u!136 &828653775
 CapsuleCollider:
   m_ObjectHideFlags: 0

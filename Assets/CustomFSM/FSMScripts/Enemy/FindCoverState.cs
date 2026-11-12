@@ -1,0 +1,11 @@
+using UnityEngine;
+using UnityEngine.AI;
+
+[System.Serializable]
+public class FindCoverState : State
+{
+    public float searchRange = 20;
+    public LayerMask coverLayers;
+    public float speedModifier = 3;
+    public NavMeshAgent agent;
+}

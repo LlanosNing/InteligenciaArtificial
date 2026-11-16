@@ -30,10 +30,8 @@ public class PatrolState : State
 
     }
 
-    public override void OnUpdate()
+    public override TransitionType OnUpdate()
     {
-        //Detectar objetivos continuamente
-        DetectTargets();
         //Comprobar si llega a su destino y pasar al siguiente Waypoint
         //Se pone agent porque es un State así que sin el agent no se puede poner en un objeto
         Vector3 direction = waypoints[waypointIndex].position - agent.transform.position;
@@ -56,24 +54,18 @@ public class PatrolState : State
                 {
                     waypointIndex = 0;
                 }
-
                 agent.SetDestination(waypoints[waypointIndex].position);
             }
-
-            
         }
-    }
 
-    void DetectTargets()
-    {
         //Detecta a su alrededor con un Overlap. Si detecta al jugador, cambia de estado
         Collider[] targets = Physics.OverlapSphere(agent.transform.position, detectionRange, detectionLayers);
-       
-        if(targets.Length > 0)
-        {
-            Debug.Log("AYUDA");
-            sm.ChangeState(stateToChange);
-        }
-    }
 
+        if (targets.Length > 0)
+        {
+            return TransitionType.PlayerDetected;
+        }
+
+        return TransitionType.None;
+    }
 }

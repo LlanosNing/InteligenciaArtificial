@@ -22,7 +22,7 @@ public class CombatState : State
         //Cambiar la stoppingDistance por el rango de ataque para que pare cuando ataca
         agent.stoppingDistance = attackRange;
     }
-    public override void OnUpdate()
+    public override TransitionType OnUpdate()
     {
         agent.SetDestination(target.position);
 
@@ -38,6 +38,8 @@ public class CombatState : State
 
         //Mirar hacia el objetivo
         LookAtPlayer(targetDir);
+
+        return TransitionType.None;
     }
 
     public override void OnExit()

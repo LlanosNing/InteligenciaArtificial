@@ -1,37 +1,16 @@
 using UnityEngine;
 
-//abstract sirve para indicar que esta clase solo sirve para heredar de ella
+//Abstract sirve para indicar que esta clase sólo sirve para heredar de ella
 [System.Serializable]
-public abstract class State 
+public abstract class State
 {
-    public string name = "Default state";
+    public string name = "State";
 
-    //El estado al que debe cambiar cuando se cumpla la condición
-    public State stateToChange;
+    public virtual void OnEnter() { }
 
-    //La máquina de estados con la que debe cambiar de uno a otro
-    protected StateMachine sm;
+    public abstract TransitionType OnUpdate();
 
-    public void Setup(StateMachine stateMachine, State state)
-    {
-        sm = stateMachine;  
-        stateToChange = state;
-    }
+    public virtual void OnExit() { }
 
-   public virtual void OnEnter()
-    {
-
-    } 
-
-   
-    public virtual void OnUpdate()
-    {
-
-    }
-
-
-    public virtual void OnExit() 
-    { 
-    
-    }
+    public virtual void DrawGizmos() { }
 }

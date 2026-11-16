@@ -22,12 +22,7 @@ public class AlertState : State
         agent.SetDestination(player.position);
     }
 
-    public override void OnUpdate()
-    {
-        DetectPlayer();
-    }
-
-    void DetectPlayer()
+    public override TransitionType OnUpdate()
     {
         //Primero comprueba alrededor con un Overlap
         Collider[] targets = Physics.OverlapSphere(agent.transform.position, hearingRange);
@@ -43,8 +38,16 @@ public class AlertState : State
 
             //Comprobar si está en su rango de visión
             if (dotProduct > Mathf.Cos(visionAngle * .5f * Mathf.Deg2Rad))
+            {
                 //Si detecta al objetivo, cambia de estado
-                sm.ChangeState(stateToChange);
+                return TransitionType.PlayerDetected;
+            }
         }
+
+        //Si llega a la posición donde  vio al objeto, pero no lo detecta, 
+        if (agent.remainingDistance < agent.stoppingDistance + .1f)
+            return TransitionType.PlayerLost; //Devuelve una transición de tipo JUGADOR PERDIDO
+
+        return TransitionType.None;
     }
 }

@@ -4,7 +4,8 @@ public enum TransitionType
 {
     None,
     PlayerDetected,
-    PlayerLost
+    PlayerLost,
+    BehindCover
 }
 
 public class StateTransition

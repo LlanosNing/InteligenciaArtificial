@@ -45,7 +45,7 @@ public class EnemyShoot : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, combat.attackRange);
         Gizmos.color = Color.navajoWhite;
         Gizmos.DrawWireSphere(transform.position, patrol.detectionRange);
-        Gizmos.color = Color.black;
+        Gizmos.color = Color.greenYellow;
         Gizmos.DrawWireSphere(transform.position, alert.hearingRange);
     }
 }
